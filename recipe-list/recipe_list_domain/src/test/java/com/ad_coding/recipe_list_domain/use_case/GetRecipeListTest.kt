@@ -10,15 +10,17 @@ import org.junit.Test
 class GetRecipeListTest {
 
     private lateinit var repository: RecipeRepository
+    private lateinit var getRecipeList: GetRecipeList
 
     @Before
     fun setUp() {
         repository = RecipeRepositoryFake()
+        getRecipeList = GetRecipeList(repository)
     }
 
     @Test
-    fun execute() {
-        val recipes = repository.getRandomRecipes()
+    fun `Random recipes properly fetched`() {
+        val recipes = getRecipeList.execute()
 
         assertThat(recipes)
             .isNotEqualTo(emptyList<Recipe>())

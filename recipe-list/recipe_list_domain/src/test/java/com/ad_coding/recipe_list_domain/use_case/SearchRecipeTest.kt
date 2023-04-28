@@ -9,17 +9,19 @@ import org.junit.Test
 
 class SearchRecipeTest {
 
-    private lateinit var repository: RecipeRepository
+    private lateinit var searchRecipe: SearchRecipe
+    private lateinit var repositoryFake: RecipeRepositoryFake
 
     @Before
     fun setUp() {
-        repository = RecipeRepositoryFake()
+        repositoryFake = RecipeRepositoryFake()
+        searchRecipe = SearchRecipe(repositoryFake)
     }
 
     @Test
-    fun execute() {
+    fun `Query returns the expected result`() {
         runBlocking {
-            val recipes = repository.searchRecipes("Pizza")
+            val recipes = searchRecipe.execute("Pizza")
 
             recipes.forEach { recipe ->
                 assertThat(recipe.title)

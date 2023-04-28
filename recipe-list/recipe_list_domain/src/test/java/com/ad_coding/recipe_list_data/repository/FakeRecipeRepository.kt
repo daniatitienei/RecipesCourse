@@ -25,11 +25,11 @@ class RecipeRepositoryFake : RecipeRepository {
         listOf(
             Recipe(
                 id = 0,
-                title = query
+                title = "Pizza 1"
             ),
             Recipe(
                 id = 1,
-                title = query
+                title = "Pizza 2"
             )
         )
 }
